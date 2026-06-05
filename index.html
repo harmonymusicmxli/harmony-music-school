@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07354f" />
+    <title>Harmony Music School</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegacion principal">
+        <div class="brand-lockup">
+          <img src="assets/harmony-logo-white.png" alt="Harmony Music School" />
+        </div>
+        <nav class="role-nav" aria-label="Cambiar perfil">
+          <button class="role-tab is-active" data-view="admin" type="button">
+            <span class="icon" aria-hidden="true">▦</span>
+            Admin
+          </button>
+          <button class="role-tab" data-view="teacher" type="button">
+            <span class="icon" aria-hidden="true">♪</span>
+            Maestro
+          </button>
+          <button class="role-tab" data-view="parent" type="button">
+            <span class="icon" aria-hidden="true">◉</span>
+            Papás
+          </button>
+        </nav>
+        <div class="sidebar-status">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          Recordatorios listos
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Harmony Music School</p>
+            <h1 id="view-title">Panel Harmony</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="ghost-button" id="demo-notification" type="button">
+              Probar notificacion
+            </button>
+            <button class="primary-button" id="quick-reminder" type="button">
+              Enviar recordatorios
+            </button>
+          </div>
+        </header>
+
+        <section class="view is-active" id="admin-view" aria-labelledby="admin-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="admin-title">Cobros y agenda</h2>
+              <p>Resumen operativo para saber quien pago, quien debe y que clases siguen.</p>
+            </div>
+            <div class="month-pill">Junio 2026</div>
+          </div>
+
+          <div class="kpi-grid" id="kpi-grid"></div>
+
+          <div class="workspace-grid">
+            <section class="panel wide-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Cobros del mes</h3>
+                  <p>Alumnos activos y estado de mensualidad.</p>
+                </div>
+                <button class="text-button" type="button">Exportar</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Alumno</th>
+                      <th>Teléfono tutor</th>
+                      <th>Programa</th>
+                      <th>Vence</th>
+                      <th>Monto</th>
+                      <th>Estado</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="payments-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Clases de hoy</h3>
+                  <p>Agenda rapida de maestros.</p>
+                </div>
+              </div>
+              <div class="agenda-list" id="agenda-list"></div>
+            </section>
+          </div>
+
+          <div class="workspace-grid lower-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Mensajes recientes</h3>
+                  <p>Comunicacion con familias.</p>
+                </div>
+              </div>
+              <div class="message-list" id="message-list"></div>
+            </section>
+            <section class="panel wide-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Seguimiento</h3>
+                  <p>Acciones sugeridas para administracion.</p>
+                </div>
+              </div>
+              <div class="task-grid" id="task-grid"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="teacher-view" aria-labelledby="teacher-title">
+          <div class="teacher-layout">
+            <section class="phone-preview">
+              <div class="phone-shell">
+                <div class="mobile-header">
+                  <img src="assets/harmony-mark-navy.png" alt="" />
+                  <div>
+                  <p>Prof. Héctor</p>
+                    <strong>Mis clases</strong>
+                  </div>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Periodo de clases">
+                  <button class="is-selected" type="button">Hoy</button>
+                  <button type="button">Semana</button>
+                </div>
+                <div class="mobile-card is-current">
+                  <span>3:00 PM</span>
+                  <h3>Todos · personalizada</h3>
+                  <p>2 alumnos · Viernes</p>
+                </div>
+                <div class="mobile-card">
+                  <span>4:30 PM</span>
+                  <h3>Todos · personalizada</h3>
+                  <p>1 alumno · Viernes</p>
+                </div>
+                <div class="mobile-card">
+                  <span>11:00 AM</span>
+                  <h3>Guitarra</h3>
+                  <p>2 alumnos · Sábado</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel attendance-panel">
+              <div class="panel-header">
+                <div>
+                  <h2 id="teacher-title">Clase personalizada</h2>
+                  <p>Viernes · 3:00-4:00 PM · Prof. Héctor</p>
+                </div>
+                <span class="status-chip pending">En curso</span>
+              </div>
+              <div class="attendance-list" id="attendance-list"></div>
+              <label class="note-field">
+                Nota de clase
+                <textarea id="class-note" rows="4">Clase de seguimiento individual.</textarea>
+              </label>
+              <button class="primary-button full-width" id="save-attendance" type="button">
+                Guardar asistencia
+              </button>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="parent-view" aria-labelledby="parent-title">
+          <div class="parent-grid">
+            <section class="phone-preview">
+              <div class="phone-shell parent-phone">
+                <div class="mobile-header">
+                  <img src="assets/harmony-mark-navy.png" alt="" />
+                  <div>
+                  <p>6861413081</p>
+                  <strong>Andrea Luna</strong>
+                  </div>
+                </div>
+                <div class="balance-card">
+                  <p>Saldo pendiente</p>
+                  <strong>$1,000</strong>
+                  <span>Pago por sesión</span>
+                  <button type="button">Pagar ahora</button>
+                </div>
+                <div class="mini-section">
+                  <h3>Proximas clases</h3>
+                  <div class="mini-row">
+                    <span>Canto</span>
+                    <strong>Lun 4:00 PM</strong>
+                  </div>
+                  <div class="mini-row">
+                    <span>Canto</span>
+                    <strong>Mié 4:00 PM</strong>
+                  </div>
+                </div>
+                <div class="mini-section">
+              <h3>Últimas asistencias</h3>
+                  <div class="mini-row">
+                    <span>Martes</span>
+                    <strong class="ok-text">Asistió</strong>
+                  </div>
+                  <div class="mini-row">
+                    <span>Jueves</span>
+                    <strong class="late-text">Tarde</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel parent-panel">
+              <div class="panel-header">
+                <div>
+                <h2 id="parent-title">Pago de clase</h2>
+                <p>Detalle para papá o tutor.</p>
+                </div>
+                <span class="status-chip overdue">Pendiente</span>
+              </div>
+              <div class="invoice-card">
+                <div>
+                  <span>Canto personalizada</span>
+                  <strong>$1,000</strong>
+                </div>
+                <div>
+                  <span>Material</span>
+                  <strong>$0</strong>
+                </div>
+                <div>
+                  <span>Descuento</span>
+                  <strong>$0</strong>
+                </div>
+                <div class="invoice-total">
+                  <span>Total</span>
+                  <strong>$1,000</strong>
+                </div>
+              </div>
+              <div class="notification-demo">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                Recordatorio enviado por WhatsApp y notificacion.
+              </div>
+              <div class="parent-actions">
+                <button class="primary-button" type="button">Enviar comprobante</button>
+                <button class="ghost-button" type="button">Contactar Harmony</button>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
