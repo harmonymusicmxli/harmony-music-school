@@ -9,7 +9,32 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
+    <section class="login-screen" id="login-screen" aria-labelledby="login-title">
+      <div class="login-panel">
+        <div class="login-brand">
+          <img src="assets/harmony-logo-white.png" alt="Harmony Music School" />
+        </div>
+        <form class="login-card" id="login-form">
+          <p class="eyebrow">Acceso privado</p>
+          <h1 id="login-title">Iniciar sesión</h1>
+          <p class="login-copy">Sistema interno para administración, maestros y familias de Harmony.</p>
+
+          <label>
+            Usuario
+            <input id="login-user" autocomplete="username" name="user" required type="text" />
+          </label>
+          <label>
+            Contraseña
+            <input id="login-password" autocomplete="current-password" name="password" required type="password" />
+          </label>
+
+          <p class="login-error" id="login-error" role="alert"></p>
+          <button class="primary-button full-width" type="submit">Entrar</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="app-shell is-locked" id="app-shell" aria-hidden="true">
       <aside class="sidebar" aria-label="Navegacion principal">
         <div class="brand-lockup">
           <img src="assets/harmony-logo-white.png" alt="Harmony Music School" />
@@ -41,6 +66,9 @@
             <h1 id="view-title">Panel Harmony</h1>
           </div>
           <div class="topbar-actions">
+            <button class="ghost-button" id="logout-button" type="button">
+              Cerrar sesión
+            </button>
             <button class="ghost-button" id="demo-notification" type="button">
               Probar notificacion
             </button>

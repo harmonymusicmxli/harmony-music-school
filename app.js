@@ -107,6 +107,11 @@ const statusClasses = {
   Vencido: "overdue",
 };
 
+const DEMO_USER = "admin";
+const DEMO_PASSWORD = "Harmony2026!";
+const SESSION_KEY = "harmony-demo-session";
+let hasRenderedPrivateData = false;
+
 function moneyToNumber(value) {
   const match = value.replace(/,/g, "").match(/\d+/);
   return match ? Number(match[0]) : 0;
@@ -268,6 +273,30 @@ async function showDemoNotification() {
 }
 
 function attachEvents() {
+  document.querySelector("#login-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const user = document.querySelector("#login-user").value.trim();
+    const password = document.querySelector("#login-password").value;
+    const error = document.querySelector("#login-error");
+
+    if (user === DEMO_USER && password === DEMO_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "active");
+      error.textContent = "";
+      renderPrivateData();
+      unlockApp();
+      showToast("Sesión iniciada.");
+      return;
+    }
+
+    error.textContent = "Usuario o contraseña incorrectos.";
+  });
+
+  document.querySelector("#logout-button").addEventListener("click", () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    lockApp();
+    showToast("Sesión cerrada.");
+  });
+
   document.querySelectorAll(".role-tab").forEach((button) => {
     button.addEventListener("click", () => switchView(button.dataset.view));
   });
@@ -307,11 +336,41 @@ function registerServiceWorker() {
   }
 }
 
-renderKpis();
-renderPayments();
-renderAgenda();
-renderMessages();
-renderTasks();
-renderAttendance();
-attachEvents();
-registerServiceWorker();
+function unlockApp() {
+  document.querySelector("#login-screen").classList.add("is-hidden");
+  document.querySelector("#app-shell").classList.remove("is-locked");
+  document.querySelector("#app-shell").setAttribute("aria-hidden", "false");
+}
+
+function renderPrivateData() {
+  if (hasRenderedPrivateData) return;
+  renderKpis();
+  renderPayments();
+  renderAgenda();
+  renderMessages();
+  renderTasks();
+  renderAttendance();
+  hasRenderedPrivateData = true;
+}
+
+function lockApp() {
+  document.querySelector("#login-screen").classList.remove("is-hidden");
+  document.querySelector("#app-shell").classList.add("is-locked");
+  document.querySelector("#app-shell").setAttribute("aria-hidden", "true");
+  document.querySelector("#login-password").value = "";
+  document.querySelector("#login-user").focus();
+}
+
+function initApp() {
+  attachEvents();
+  registerServiceWorker();
+
+  if (sessionStorage.getItem(SESSION_KEY) === "active") {
+    renderPrivateData();
+    unlockApp();
+  } else {
+    lockApp();
+  }
+}
+
+initApp();
