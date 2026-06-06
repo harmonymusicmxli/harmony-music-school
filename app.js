@@ -1,99 +1,12 @@
-const students = [
-  { id: 1, name: "Andrea Luna", phone: "6861413081", instrument: "Canto", type: "Personalizada", teacher: "Selia", days: "Lunes y miércoles", schedule: "4:00-5:00 PM", payment: "$1,000/sesión" },
-  { id: 2, name: "María José Carmona", phone: "6861512960", instrument: "Canto", type: "Grupal", teacher: "Selia", days: "Lunes y miércoles", schedule: "6:00-7:00 PM", payment: "$1,500/mes" },
-  { id: 3, name: "Emma Ko", phone: "6862923813", instrument: "Canto", type: "Grupal", teacher: "Selia", days: "Lunes y miércoles", schedule: "6:00-7:00 PM", payment: "$1,500/mes" },
-  { id: 4, name: "Naomi G.", phone: "6861641859", instrument: "Guitarra y Canto", type: "Grupal", teacher: "Héctor/Selia", days: "Lun-Mié", schedule: "5:00-7:00 PM", payment: "$2,900/mes" },
-  { id: 5, name: "Leonardo Santos", phone: "6861872901", instrument: "Piano", type: "Grupal", teacher: "Martín", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$1,500/mes" },
-  { id: 6, name: "Noah Guerrero", phone: "+1 9282716705", instrument: "Piano", type: "Grupal", teacher: "Martín", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$1,500/mes" },
-  { id: 7, name: "Fernanda Olea", phone: "6862802670", instrument: "Piano", type: "Grupal", teacher: "Héctor", days: "Mar-Jue", schedule: "4:15-5:15 PM", payment: "$1,500/mes" },
-  { id: 8, name: "Paulina Higuera", phone: "6869455925", instrument: "Piano", type: "Grupal", teacher: "Héctor", days: "Mar-Jue", schedule: "4:15-5:15 PM", payment: "$1,500/mes" },
-  { id: 9, name: "María Fernanda Higuera", phone: "6869455925", instrument: "Piano", type: "Grupal", teacher: "Héctor", days: "Mar-Jue", schedule: "4:15-5:15 PM", payment: "$1,500/mes" },
-  { id: 10, name: "Luciana Talamante", phone: "6862250032", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Sábado", schedule: "10:00-11:00 AM", payment: "$1,000/sesión" },
-  { id: 11, name: "Luis Alberto Ruiz", phone: "6862439223", instrument: "Guitarra", type: "Grupal", teacher: "Héctor", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$1,500/mes" },
-  { id: 12, name: "Rodolfo Tejada", phone: "6862620547", instrument: "Guitarra", type: "Grupal", teacher: "Héctor", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$1,500/mes" },
-  { id: 13, name: "Carlos Andrés Sandoval", phone: "6862220090", instrument: "Batería", type: "Grupal", teacher: "Martín", days: "Lun-Mié", schedule: "4:00-5:00 PM", payment: "$1,500/mes" },
-  { id: 14, name: "Sara Yee", phone: "6861734185", instrument: "Batería Adultos", type: "Grupal", teacher: "Martín", days: "Lunes", schedule: "8:00-9:30 PM", payment: "$1,200/mes" },
-  { id: 15, name: "Paty G.", phone: "6861641859", instrument: "Batería/Canto/Piano", type: "Mixto", teacher: "Martín/Selia", days: "Lun-Jue", schedule: "Variable", payment: "$1,200+sesiones" },
-  { id: 16, name: "Panchito Garín", phone: "6861136782", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Viernes", schedule: "5:30-7:00 PM", payment: "$750/sesión" },
-  { id: 17, name: "Fátima Garín", phone: "6861136782", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Viernes", schedule: "5:30-7:00 PM", payment: "$750/sesión" },
-  { id: 18, name: "María Luisa Téllez", phone: "6862404564", instrument: "Canto Adultos", type: "Grupal", teacher: "Balvis", days: "Martes", schedule: "8:00-9:30 PM", payment: "$1,500/mes" },
-  { id: 19, name: "Jessica Garnier", phone: "6862219359", instrument: "Canto Adultos", type: "Grupal", teacher: "Balvis", days: "Martes", schedule: "8:00-9:30 PM", payment: "$1,500/mes" },
-  { id: 20, name: "Sasha González", phone: "6866051493", instrument: "Canto", type: "Grupal", teacher: "Selia", days: "Lun-Mié", schedule: "6:00-7:00 PM", payment: "$1,500/mes" },
-  { id: 21, name: "Antonieta Cubedo", phone: "6863046720", instrument: "Canto", type: "Grupal", teacher: "Selia", days: "Lun-Mié", schedule: "6:00-7:00 PM", payment: "$1,500/mes" },
-  { id: 22, name: "Fabián Román", phone: "6862360234", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Martes", schedule: "6:30-7:30 PM", payment: "$1,000/sesión" },
-  { id: 23, name: "Nina Cruz", phone: "+1 7605564400", instrument: "Piano/Canto", type: "Mixto", teacher: "Héctor", days: "Variable", schedule: "Variable", payment: "$1,500+sesiones" },
-  { id: 24, name: "Juan Pablo Calderón", phone: "5543681848", instrument: "Piano", type: "Grupal", teacher: "Martín", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$1,500/mes" },
-  { id: 25, name: "Nathalia Ochoa", phone: "6862429762", instrument: "Guitarra", type: "Grupal", teacher: "Héctor", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$1,500/mes" },
-  { id: 26, name: "Renata Roldán", phone: "6862483175", instrument: "Canto", type: "Grupal", teacher: "Selia", days: "Lun-Mié", schedule: "6:00-7:00 PM", payment: "$1,500/mes" },
-  { id: 27, name: "Valeria Núñez", phone: "6861845498", instrument: "Canto Adultos", type: "Grupal", teacher: "Balvis", days: "Martes", schedule: "8:00-9:30 PM", payment: "$1,500/mes" },
-  { id: 28, name: "Diego Gaytán", phone: "5535660967", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Lunes", schedule: "6:00-7:00 PM", payment: "$1,000/sesión" },
-  { id: 29, name: "Carlos Vizcarra", phone: "6862778229", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Jueves", schedule: "3:15-4:15 PM", payment: "$500/sesión" },
-  { id: 30, name: "Gabriel Vizcarra", phone: "6862778229", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Jueves", schedule: "3:15-4:15 PM", payment: "$500/sesión" },
-  { id: 31, name: "Liz Sandoval", phone: "6531300105", instrument: "Guitarra", type: "Personalizada", teacher: "Héctor", days: "Sábado", schedule: "11:00-12:00 PM", payment: "$500/sesión" },
-  { id: 32, name: "Abel", phone: "6531300105", instrument: "Guitarra", type: "Personalizada", teacher: "Héctor", days: "Sábado", schedule: "11:00-12:00 PM", payment: "$500/sesión" },
-  { id: 33, name: "Valeria Pico", phone: "8180751068", instrument: "Canto", type: "Personalizada", teacher: "Selia", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$500/sesión" },
-  { id: 34, name: "Lucian Espinoza", phone: "Pendiente", instrument: "Canto", type: "Personalizada", teacher: "Selia", days: "Lun-Mié", schedule: "5:00-6:00 PM", payment: "$500/sesión" },
-  { id: 35, name: "Amairany G.", phone: "6861641859", instrument: "Piano/Canto", type: "Grupal", teacher: "Martín/Selia", days: "Lun-Mié", schedule: "5:00-7:00 PM", payment: "$2,900/mes" },
-  { id: 36, name: "Jorge Villar", phone: "6866047474", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Viernes", schedule: "4:30-5:30 PM", payment: "$1,000/sesión" },
-  { id: 37, name: "Camila Favela", phone: "6862214371", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Viernes", schedule: "3:00-4:00 PM", payment: "$500/sesión" },
-  { id: 38, name: "Emilio Favela", phone: "6862214371", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Viernes", schedule: "3:00-4:00 PM", payment: "$500/sesión" },
-  { id: 39, name: "Zarela Pereztejada", phone: "+1 8582647666", instrument: "Batería Adultos", type: "Grupal", teacher: "Martín", days: "Lunes", schedule: "8:00-9:30 PM", payment: "$1,500/mes" },
-  { id: 40, name: "María Elisa Aviléz", phone: "+1 4423541459", instrument: "Piano", type: "Personalizada", teacher: "Héctor", days: "Martes", schedule: "7:30-8:30 PM", payment: "$500/sesión" },
-  { id: 41, name: "Erika Elías", phone: "6865092562", instrument: "Piano", type: "Personalizada", teacher: "Héctor", days: "Martes", schedule: "7:30-8:30 PM", payment: "$500/sesión" },
-  { id: 42, name: "Hans Cruger", phone: "6461514087", instrument: "Todos", type: "Personalizada", teacher: "Héctor", days: "Jueves", schedule: "5:30-6:30 PM", payment: "$1,000/sesión" },
-];
+const SUPABASE_URL = "https://odcxspgmlthfsbkhcpjo.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_wpK7ztONoOfLWSG9U9UV0Q_EQVzUF55";
 
-const payments = students.map((student) => ({
-  student: student.name,
-  parent: student.phone,
-  program: `${student.instrument} · ${student.type}`,
-  due: student.payment.includes("/mes") ? "05 junio" : "Por sesión",
-  amount: student.payment,
-  status: student.id % 7 === 0 ? "Vencido" : student.id % 3 === 0 ? "Pagado" : "Pendiente",
-}));
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-const agenda = [
-  { time: "3:00-4:00 PM", title: "Personalizada · Todos", meta: "Héctor · Camila Favela, Emilio Favela · Viernes" },
-  { time: "4:30-5:30 PM", title: "Personalizada · Todos", meta: "Héctor · Jorge Villar · Viernes" },
-  { time: "5:30-7:00 PM", title: "Personalizada · Todos", meta: "Héctor · Panchito Garín, Fátima Garín · Viernes" },
-  { time: "Sábado 10:00 AM", title: "Personalizada · Todos", meta: "Héctor · Luciana Talamante" },
-  { time: "Sábado 11:00 AM", title: "Personalizada · Guitarra", meta: "Héctor · Liz Sandoval, Abel" },
-];
-
-const messages = [
-  {
-    from: "Carla Arreola",
-    text: "Enviare comprobante de Valentina por la tarde.",
-  },
-  {
-    from: "Prof. Melissa",
-    text: "Viernes tiene 5 alumnos personalizados con Héctor.",
-  },
-  {
-    from: "Administracion",
-    text: "Recordatorios de mayo preparados para envio.",
-  },
-];
-
-const tasks = [
-  {
-    title: "42 alumnos activos",
-    text: "Base importada desde el PDF de Harmony.",
-  },
-  {
-    title: "1 telefono pendiente",
-    text: "Falta confirmar el tutor de Lucian Espinoza.",
-  },
-  {
-    title: "Pagos por sesion",
-    text: "Conviene confirmar si se cobraran como paquete o por clase tomada.",
-  },
-];
-
-const attendance = [
-  { name: "Camila Favela", instrument: "Todos", status: "asistio" },
-  { name: "Emilio Favela", instrument: "Todos", status: "asistio" },
-];
+let payments = [];
+let students = [];
+let attendance = [];
+let hasRenderedPrivateData = false;
 
 const viewTitles = {
   admin: "Panel Harmony",
@@ -102,19 +15,31 @@ const viewTitles = {
 };
 
 const statusClasses = {
-  Pagado: "paid",
-  Pendiente: "pending",
-  Vencido: "overdue",
+  paid: "paid",
+  pending: "pending",
+  overdue: "overdue",
+  cancelled: "pending",
 };
 
-const DEMO_USER = "admin";
-const DEMO_PASSWORD = "Harmony2026!";
-const SESSION_KEY = "harmony-demo-session";
-let hasRenderedPrivateData = false;
+const statusLabels = {
+  paid: "Pagado",
+  pending: "Pendiente",
+  overdue: "Vencido",
+  cancelled: "Cancelado",
+};
 
 function moneyToNumber(value) {
-  const match = value.replace(/,/g, "").match(/\d+/);
-  return match ? Number(match[0]) : 0;
+  return Number(value || 0);
+}
+
+function formatMoney(value) {
+  return `$${moneyToNumber(value).toLocaleString("es-MX")}`;
+}
+
+function formatDueDate(value) {
+  if (!value) return "Por sesión";
+  const date = new Date(`${value}T00:00:00`);
+  return date.toLocaleDateString("es-MX", { day: "2-digit", month: "short" });
 }
 
 function showToast(message) {
@@ -124,18 +49,103 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove("is-visible"), 3200);
 }
 
+function setLoading(isLoading) {
+  document.querySelector("#quick-reminder").disabled = isLoading;
+  document.querySelector("#demo-notification").disabled = isLoading;
+}
+
+function normalizePayment(row) {
+  const student = row.students || {};
+  const family = row.families || {};
+
+  return {
+    id: row.id,
+    student: student.full_name || "Alumno sin nombre",
+    parent: family.primary_phone || student.phone || "Pendiente",
+    program: `${student.instrument || "Clase"} · ${student.class_type || "Sin tipo"}`,
+    due: formatDueDate(row.due_date),
+    amount: row.amount || 0,
+    amountLabel: row.payment_label || formatMoney(row.amount),
+    status: row.status || "pending",
+    teacher: student.default_teacher || "Pendiente",
+    days: student.days || "Pendiente",
+    schedule: student.schedule || "Pendiente",
+  };
+}
+
+async function loadDashboardData() {
+  setLoading(true);
+
+  const { data: paymentRows, error: paymentsError } = await supabaseClient
+    .from("payments")
+    .select(
+      `
+        id,
+        concept,
+        amount,
+        payment_label,
+        due_date,
+        status,
+        paid_at,
+        students (
+          full_name,
+          phone,
+          instrument,
+          class_type,
+          default_teacher,
+          days,
+          schedule
+        ),
+        families (
+          display_name,
+          primary_phone
+        )
+      `,
+    )
+    .order("created_at", { ascending: true });
+
+  if (paymentsError) {
+    showToast(`No pude cargar pagos: ${paymentsError.message}`);
+    setLoading(false);
+    return;
+  }
+
+  const { data: studentRows, error: studentsError } = await supabaseClient
+    .from("students")
+    .select("student_number, full_name, instrument, class_type, default_teacher, days, schedule")
+    .eq("active", true)
+    .order("student_number", { ascending: true });
+
+  if (studentsError) {
+    showToast(`No pude cargar alumnos: ${studentsError.message}`);
+    setLoading(false);
+    return;
+  }
+
+  payments = (paymentRows || []).map(normalizePayment);
+  students = studentRows || [];
+  attendance = students.slice(0, 5).map((student) => ({
+    name: student.full_name,
+    instrument: student.instrument || "Clase",
+    status: "asistio",
+  }));
+
+  renderPrivateData();
+  setLoading(false);
+}
+
 function renderKpis() {
   const paidTotal = payments
-    .filter((payment) => payment.status === "Pagado")
+    .filter((payment) => payment.status === "paid")
     .reduce((sum, payment) => sum + moneyToNumber(payment.amount), 0);
-  const pendingCount = payments.filter((payment) => payment.status === "Pendiente").length;
-  const overdueCount = payments.filter((payment) => payment.status === "Vencido").length;
+  const pendingCount = payments.filter((payment) => payment.status === "pending").length;
+  const overdueCount = payments.filter((payment) => payment.status === "overdue").length;
 
   const kpis = [
-    { label: "Pagado este mes", value: `$${paidTotal.toLocaleString("es-MX")}`, hint: "2 pagos confirmados" },
+    { label: "Pagado este mes", value: formatMoney(paidTotal), hint: "Pagos confirmados" },
     { label: "Pendiente", value: pendingCount, hint: "Mensualidades por cobrar" },
     { label: "Vencido", value: overdueCount, hint: "Requieren recordatorio" },
-    { label: "Clases de hoy", value: agenda.length, hint: "Agenda activa" },
+    { label: "Alumnos activos", value: students.length, hint: "Base Supabase" },
   ];
 
   document.querySelector("#kpi-grid").innerHTML = kpis
@@ -154,7 +164,7 @@ function renderKpis() {
 function renderPayments() {
   document.querySelector("#payments-body").innerHTML = payments
     .map((payment, index) => {
-      const isPaid = payment.status === "Pagado";
+      const isPaid = payment.status === "paid";
 
       return `
         <tr>
@@ -165,15 +175,19 @@ function renderPayments() {
           <td>${payment.parent}</td>
           <td>${payment.program}</td>
           <td>${payment.due}</td>
-          <td><strong>${payment.amount}</strong></td>
-          <td><span class="status-chip ${statusClasses[payment.status]}">${payment.status}</span></td>
+          <td><strong>${payment.amountLabel}</strong></td>
+          <td>
+            <div class="status-actions">
+              <span class="status-chip ${statusClasses[payment.status]}">${statusLabels[payment.status]}</span>
+            </div>
+          </td>
           <td>
             <div class="row-actions">
               <button class="row-button reminder-button" ${isPaid ? "disabled" : ""} data-student="${payment.student}" type="button">
                 Recordar
               </button>
               <button class="row-button pay-button" ${isPaid ? "disabled" : ""} data-index="${index}" type="button">
-                Marcar pagado
+                Pagado
               </button>
             </div>
           </td>
@@ -184,7 +198,16 @@ function renderPayments() {
 }
 
 function renderAgenda() {
-  document.querySelector("#agenda-list").innerHTML = agenda
+  const agendaItems = students
+    .filter((student) => student.default_teacher && student.schedule && student.schedule !== "Variable")
+    .slice(0, 5)
+    .map((student) => ({
+      time: student.schedule,
+      title: `${student.class_type || "Clase"} · ${student.instrument || "Instrumento"}`,
+      meta: `${student.default_teacher} · ${student.full_name} · ${student.days}`,
+    }));
+
+  document.querySelector("#agenda-list").innerHTML = agendaItems
     .map(
       (item) => `
         <article class="agenda-item">
@@ -200,6 +223,22 @@ function renderAgenda() {
 }
 
 function renderMessages() {
+  const pending = payments.filter((payment) => payment.status !== "paid").length;
+  const messages = [
+    {
+      from: "Supabase",
+      text: `${students.length} alumnos activos cargados desde la base real.`,
+    },
+    {
+      from: "Administración",
+      text: `${pending} pagos requieren seguimiento.`,
+    },
+    {
+      from: "Sistema Harmony",
+      text: "El botón Pagado ya actualiza la base de datos.",
+    },
+  ];
+
   document.querySelector("#message-list").innerHTML = messages
     .map(
       (message) => `
@@ -213,6 +252,22 @@ function renderMessages() {
 }
 
 function renderTasks() {
+  const missingPhone = payments.filter((payment) => payment.parent === "Pendiente").length;
+  const tasks = [
+    {
+      title: "Base real conectada",
+      text: "Pagos y alumnos ya salen de Supabase.",
+    },
+    {
+      title: `${missingPhone} teléfono pendiente`,
+      text: "Revisar alumnos o tutores sin teléfono confirmado.",
+    },
+    {
+      title: "Siguiente mejora",
+      text: "Crear cuentas por maestro y familia.",
+    },
+  ];
+
   document.querySelector("#task-grid").innerHTML = tasks
     .map(
       (task) => `
@@ -258,7 +313,10 @@ function switchView(viewName) {
 }
 
 async function showDemoNotification() {
-  const message = "Harmony: Andrea Luna tiene un pago pendiente de $1,000.";
+  const pendingPayment = payments.find((payment) => payment.status !== "paid");
+  const message = pendingPayment
+    ? `Harmony: ${pendingPayment.student} tiene un pago pendiente de ${pendingPayment.amountLabel}.`
+    : "Harmony: no hay pagos pendientes.";
 
   if (!("Notification" in window)) {
     showToast(message);
@@ -279,27 +337,56 @@ async function showDemoNotification() {
   showToast(message);
 }
 
+async function markPaymentPaid(index) {
+  const payment = payments[index];
+  if (!payment) return;
+
+  const { error } = await supabaseClient
+    .from("payments")
+    .update({
+      status: "paid",
+      paid_at: new Date().toISOString(),
+      paid_method: "admin",
+    })
+    .eq("id", payment.id);
+
+  if (error) {
+    showToast(`No se pudo guardar: ${error.message}`);
+    return;
+  }
+
+  payment.status = "paid";
+  renderKpis();
+  renderPayments();
+  renderMessages();
+  showToast(`${payment.student} marcado como pagado en Supabase.`);
+}
+
 function attachEvents() {
-  document.querySelector("#login-form").addEventListener("submit", (event) => {
+  document.querySelector("#login-form").addEventListener("submit", async (event) => {
     event.preventDefault();
-    const user = document.querySelector("#login-user").value.trim();
+    const email = document.querySelector("#login-user").value.trim();
     const password = document.querySelector("#login-password").value;
     const error = document.querySelector("#login-error");
 
-    if (user === DEMO_USER && password === DEMO_PASSWORD) {
-      sessionStorage.setItem(SESSION_KEY, "active");
-      error.textContent = "";
-      renderPrivateData();
-      unlockApp();
-      showToast("Sesión iniciada.");
+    error.textContent = "";
+    const { error: authError } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (authError) {
+      error.textContent = "Usuario o contraseña incorrectos.";
       return;
     }
 
-    error.textContent = "Usuario o contraseña incorrectos.";
+    unlockApp();
+    await loadDashboardData();
+    showToast("Sesión iniciada.");
   });
 
-  document.querySelector("#logout-button").addEventListener("click", () => {
-    sessionStorage.removeItem(SESSION_KEY);
+  document.querySelector("#logout-button").addEventListener("click", async () => {
+    await supabaseClient.auth.signOut();
     lockApp();
     showToast("Sesión cerrada.");
   });
@@ -316,11 +403,7 @@ function attachEvents() {
 
     const payButton = event.target.closest(".pay-button");
     if (payButton && !payButton.disabled) {
-      const payment = payments[Number(payButton.dataset.index)];
-      payment.status = "Pagado";
-      renderKpis();
-      renderPayments();
-      showToast(`${payment.student} marcado como pagado.`);
+      markPaymentPaid(Number(payButton.dataset.index));
     }
 
     const attendanceButton = event.target.closest(".attendance-actions button");
@@ -333,23 +416,15 @@ function attachEvents() {
   });
 
   document.querySelector("#quick-reminder").addEventListener("click", () => {
-    const count = payments.filter((payment) => payment.status !== "Pagado").length;
+    const count = payments.filter((payment) => payment.status !== "paid").length;
     showToast(`${count} recordatorios preparados para papás con pago pendiente.`);
   });
 
   document.querySelector("#demo-notification").addEventListener("click", showDemoNotification);
 
   document.querySelector("#save-attendance").addEventListener("click", () => {
-    showToast("Asistencia guardada para Piano inicial.");
+    showToast("Asistencia lista para conectar a Supabase en el siguiente paso.");
   });
-}
-
-function registerServiceWorker() {
-  if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js").catch(() => {
-      showToast("La app funciona; el modo instalable se activará al publicarla.");
-    });
-  }
 }
 
 function unlockApp() {
@@ -359,7 +434,6 @@ function unlockApp() {
 }
 
 function renderPrivateData() {
-  if (hasRenderedPrivateData) return;
   renderKpis();
   renderPayments();
   renderAgenda();
@@ -370,6 +444,10 @@ function renderPrivateData() {
 }
 
 function lockApp() {
+  payments = [];
+  students = [];
+  attendance = [];
+  hasRenderedPrivateData = false;
   document.querySelector("#login-screen").classList.remove("is-hidden");
   document.querySelector("#app-shell").classList.add("is-locked");
   document.querySelector("#app-shell").setAttribute("aria-hidden", "true");
@@ -377,13 +455,25 @@ function lockApp() {
   document.querySelector("#login-user").focus();
 }
 
-function initApp() {
+function registerServiceWorker() {
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    navigator.serviceWorker.register("sw.js").catch(() => {
+      showToast("La app funciona; el modo instalable se activará al publicarla.");
+    });
+  }
+}
+
+async function initApp() {
   attachEvents();
   registerServiceWorker();
 
-  if (sessionStorage.getItem(SESSION_KEY) === "active") {
-    renderPrivateData();
+  const {
+    data: { session },
+  } = await supabaseClient.auth.getSession();
+
+  if (session) {
     unlockApp();
+    await loadDashboardData();
   } else {
     lockApp();
   }

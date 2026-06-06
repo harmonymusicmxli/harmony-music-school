@@ -1,4 +1,4 @@
-const CACHE_NAME = "harmony-prototype-v2-login";
+const CACHE_NAME = "harmony-prototype-v4-supabase";
 const ASSETS = [
   "./",
   "./index.html",

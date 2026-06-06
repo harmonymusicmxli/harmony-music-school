@@ -470,6 +470,29 @@ td {
   color: var(--danger);
 }
 
+.status-actions {
+  align-items: flex-start;
+  display: grid;
+  gap: 7px;
+  justify-items: start;
+}
+
+.inline-pay-button {
+  background: var(--navy-700);
+  border: 0;
+  border-radius: 7px;
+  color: white;
+  font-size: 12px;
+  font-weight: 850;
+  min-height: 30px;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.inline-pay-button[disabled] {
+  display: none;
+}
+
 .row-button {
   background: var(--navy-900);
   border: 0;
@@ -480,13 +503,13 @@ td {
 }
 
 .row-actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 6px;
+  min-width: 92px;
 }
 
 .pay-button {
-  background: var(--navy-700);
+  background: var(--success);
 }
 
 .row-button[disabled] {
