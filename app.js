@@ -153,8 +153,10 @@ function renderKpis() {
 
 function renderPayments() {
   document.querySelector("#payments-body").innerHTML = payments
-    .map(
-      (payment) => `
+    .map((payment, index) => {
+      const isPaid = payment.status === "Pagado";
+
+      return `
         <tr>
           <td class="student-cell">
             <strong>${payment.student}</strong>
@@ -166,13 +168,18 @@ function renderPayments() {
           <td><strong>${payment.amount}</strong></td>
           <td><span class="status-chip ${statusClasses[payment.status]}">${payment.status}</span></td>
           <td>
-            <button class="row-button reminder-button" ${payment.status === "Pagado" ? "disabled" : ""} data-student="${payment.student}" type="button">
-              Recordar
-            </button>
+            <div class="row-actions">
+              <button class="row-button reminder-button" ${isPaid ? "disabled" : ""} data-student="${payment.student}" type="button">
+                Recordar
+              </button>
+              <button class="row-button pay-button" ${isPaid ? "disabled" : ""} data-index="${index}" type="button">
+                Marcar pagado
+              </button>
+            </div>
           </td>
         </tr>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
@@ -305,6 +312,15 @@ function attachEvents() {
     const reminderButton = event.target.closest(".reminder-button");
     if (reminderButton && !reminderButton.disabled) {
       showToast(`Recordatorio preparado para ${reminderButton.dataset.student}.`);
+    }
+
+    const payButton = event.target.closest(".pay-button");
+    if (payButton && !payButton.disabled) {
+      const payment = payments[Number(payButton.dataset.index)];
+      payment.status = "Pagado";
+      renderKpis();
+      renderPayments();
+      showToast(`${payment.student} marcado como pagado.`);
     }
 
     const attendanceButton = event.target.closest(".attendance-actions button");

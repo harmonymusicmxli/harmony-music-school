@@ -479,6 +479,16 @@ td {
   padding: 0 12px;
 }
 
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pay-button {
+  background: var(--navy-700);
+}
+
 .row-button[disabled] {
   background: #e8ecee;
   color: var(--muted);
